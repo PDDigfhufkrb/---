@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Волшебный магазин — Аксессуары по Гарри Поттеру</title>
+    <title>Волшебный магазин — Гарри Поттер и Проклятое дитя</title>
     <style>
         * {
             margin: 0;
@@ -15,30 +15,42 @@
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f7f1;
+            background: linear-gradient(135deg, #1a2a6c, #b22222, #ffd700);
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         header {
-            background: linear-gradient(to right, #2a4b7c, #5a1a1a);
+            background: rgba(42, 75, 124, 0.95);
             color: white;
-            padding: 1rem 0;
             text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        nav li {
-            margin: 0 1rem;
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><text x="50" y="50" font-size="10" fill="rgba(255,215,0,0.1)" text-anchor="middle">HP</text></svg>') repeat;
+            opacity: 0.3;
         }
 
         nav a {
             color: white;
             text-decoration: none;
+            margin: 0 15px;
             font-weight: bold;
             transition: color 0.3s;
         }
@@ -48,101 +60,100 @@
         }
 
         .hero {
-            background: url('https://example.com/images/hogwarts-bg.jpg') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
+            padding: 4rem 1rem;
             color: white;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+            animation: slideUp 1s forwards;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 3px 3px 0 #5a1a1a;
         }
 
         .btn {
             display: inline-block;
             background: #ffd700;
             color: #2a4b7c;
-            padding: 0.8rem 1.5rem;
+            padding: 12px 24px;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            margin-top: 1rem;
         }
 
         .btn:hover {
-            background: #ffed4a;
+            background: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 3rem auto;
             padding: 0 1rem;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             color: #2a4b7c;
+            font-size: 2rem;
+            animation: slideUp 0.8s forwards;
         }
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .product-card {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.4s, box-shadow 0.4s;
+            animation: slideUp 0.6s forwards;
+            opacity: 0;
         }
 
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
 
         .product-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
         }
 
         .product-info {
-            padding: 1rem;
+            padding: 1.5rem;
         }
 
         .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
             color: #2a4b7c;
         }
 
         .product-price {
             font-weight: bold;
-            color: #5a1a1a;
+            color: #b22222;
+            font-size: 1.2rem;
         }
 
         footer {
@@ -150,7 +161,8 @@
             color: white;
             text-align: center;
             padding: 2rem 0;
-            margin-top: 3rem;
+            margin-top: 4rem;
+            animation: fadeIn 2s;
         }
     </style>
 </head>
@@ -159,17 +171,41 @@
         <h1>Волшебный магазин</h1>
         <p>Аксессуары по вселенной Гарри Поттера</p>
         <nav>
-            <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Книги</a></li>
-                <li><a href="#">Мантии</a></li>
-                <li><a href="#">Волшебные палочки</a></li>
-                <li><a href="#">Другое</a></li>
-            </ul>
+            <a href="#books">Книги</a>
+            <a href="#accessories">Аксессуары</a>
+            <a href="#contact">Контакты</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Гарри Поттер и Проклятое дитя</h1>
-            <p>Восьмая история ждёт вас!
+        <h1>Гарри Поттер и Проклятое дитя</h1>
+        <p>Восьмая история ждёт вас!</p>
+        <a href="#books" class="btn">Купить книгу</a>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title" id="books">Книга «Гарри Поттер и Проклятое дитя»</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="https://example.com/images/cursed-child-1.jpg" alt="Гарри Поттер и Проклятое дитя — стандартное издание" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Стандартное издание</h3>
+                    <p class="product-price">1 499 ₽</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://example.com/images/cursed-child-2.jpg" alt="Гарри Поттер и Проклятое дитя — коллекционное издание" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Коллекционное издание</h3>
+                    <p class="product-price">2 999 ₽</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="accessories">Другие аксессуары</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="https://example.com/images/wand.jpg" alt="Волшебная палочка" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Волшебная палочка</h3>
+                    <p class="product-price
