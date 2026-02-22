@@ -2,210 +2,99 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Волшебный магазин — Гарри Поттер и Проклятое дитя</title>
+    <title>Кринжополис — столица кринжа!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1a2a6c, #b22222, #ffd700);
-            animation: fadeIn 1.5s ease-in;
+            background-color: #ff69b4;
+            color: #00ff00;
+            font-family: Comic Sans MS, cursive;
+            margin: 0;
+            padding: 20px;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        header {
-            background: rgba(42, 75, 124, 0.95);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><text x="50" y="50" font-size="10" fill="rgba(255,215,0,0.1)" text-anchor="middle">HP</text></svg>') repeat;
-            opacity: 0.3;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffd700;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 1rem;
-            color: white;
-            animation: slideUp 1s forwards;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 0 #5a1a1a;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #ffd700;
-            color: #2a4b7c;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .btn:hover {
-            background: white;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
         .container {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1rem;
+            width: 80%;
+            margin: auto;
+            background-color: rgba(255, 255, 0, 0.3);
+            padding: 20px;
+            border: 5px dashed #ff00ff;
         }
-
-        .section-title {
+        h1 {
             text-align: center;
-            margin-bottom: 2.5rem;
-            color: #2a4b7c;
-            font-size: 2rem;
-            animation: slideUp 0.8s forwards;
+            font-size: 48px;
+            text-shadow: 3px 3px #ff0000;
+            animation: blink 1s infinite;
         }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            transition: transform 0.4s, box-shadow 0.4s;
-            animation: slideUp 0.6s forwards;
-            opacity: 0;
+        .banner {
+            text-align: center;
+            margin: 20px 0;
         }
-
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        img {
+            max-width: 100%;
+            height: auto;
         }
-
-        .product-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s;
+        .content {
+            text-align: justify;
+            line-height: 1.6;
         }
-
-        .product-card:hover .product-img {
-            transform: scale(1.08);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: #2a4b7c;
-        }
-
-        .product-price {
+        .counter {
+            text-align: right;
             font-weight: bold;
-            color: #b22222;
-            font-size: 1.2rem;
-        }
-
-        footer {
-            background: #2a4b7c;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-            animation: fadeIn 2s;
+            color: #ffff00;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Волшебный магазин</h1>
-        <p>Аксессуары по вселенной Гарри Поттера</p>
-        <nav>
-            <a href="#books">Книги</a>
-            <a href="#accessories">Аксессуары</a>
-            <a href="#contact">Контакты</a>
-        </nav>
-    </header>
+    <!-- Фоновая музыка (автовоспроизведение) -->
+    <audio autoplay loop>
+        <source src="https://example.com/annoying-tune.mp3" type="audio/mpeg">
+    </audio>
 
-    <section class="hero">
-        <h1>Гарри Поттер и Проклятое дитя</h1>
-        <p>Восьмая история ждёт вас!</p>
-        <a href="#books" class="btn">Купить книгу</a>
-    </section>
+    <!-- Бегущая строка -->
+    <marquee behavior="scroll" direction="left" style="background: #0000ff; color: #ffff00; padding: 10px;">
+        ⚡ ВНИМАНИЕ! ТОЛЬКО СЕГОДНЯ: СКИДКА 99% НА ВСЕ КРИНЖ-ТОВАРЫ! ⚡
+    </marquee>
 
     <div class="container">
-        <h2 class="section-title" id="books">Книга «Гарри Поттер и Проклятое дитя»</h2>
-        <div class="products">
-            <div class="product-card">
-                <img src="https://example.com/images/cursed-child-1.jpg" alt="Гарри Поттер и Проклятое дитя — стандартное издание" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Стандартное издание</h3>
-                    <p class="product-price">1 499 ₽</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://example.com/images/cursed-child-2.jpg" alt="Гарри Поттер и Проклятое дитя — коллекционное издание" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Коллекционное издание</h3>
-                    <p class="product-price">2 999 ₽</p>
-                </div>
-            </div>
+        <h1>🤡 КРИНЖОПОЛИС 🤡</h1>
+        <p style="text-align: center; font-size: 24px;">Столица кринжа во Вселенной!</p>
+
+        <!-- Мигающий баннер -->
+        <div class="banner">
+            <img src="https://i.imgur.com/4MSdT9l.gif" alt="Мигающий баннер">
         </div>
 
-        <h2 class="section-title" id="accessories">Другие аксессуары</h2>
-        <div class="products">
-            <div class="product-card">
-                <img src="https://example.com/images/wand.jpg" alt="Волшебная палочка" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">Волшебная палочка</h3>
-                    <p class="product-price
+        <div class="content">
+            <h2>Добро пожаловать на самый кринжовый сайт Рунета!</h2>
+            <p>Здесь вы найдёте:</p>
+            <ul>
+                <li>Смешные картинки с котами в шляпах</li>
+                <li>Абсурдные советы на каждый день</li>
+                <li>Тайны мироздания (не гарантировано)</li>
+                <li>Секретный рецепт печенья из носков</li>
+            </ul>
+
+            <h3>🦕 Сегодняшний факт дня:</h3>
+            <p>Учёные доказали, что если смотреть на динозавра 3 минуты подряд, он подмигнёт вам в ответ. Проверено на 10 000 добровольцах!</p>
+
+            <!-- Смешная картинка -->
+            <div style="text-align: center;">
+                <img src="https://i.imgur.com/5K9zQ7l.jpg" alt="Кот в солнечных очках" width="300">
+                <p><i>Этот кот знает все секреты кринжа</i></p>
+            </div>
+
+            <h3>💡 Полезный совет:</h3>
+            <p>Если ваш тостер начал говорить с вами, вежливо предложите ему чашку чая. Это поможет установить дипломатические отношения.</p>
+        </div>
+
+        <!-- Счётчик посещений -->
+        <div class="counter">
+            👁️ Вас посетило: <span id="visits">42 666</span> кринж‑энтузиастов!
+        </div>
+    </div>
+</body>
+</html>
