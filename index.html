@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <title>Кринжополис — столица кринжа!</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             background-color: #ff69b4;
             color: #00ff00;
             font-family: Comic Sans MS, cursive;
-            margin: 0;
-            padding: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="50" y="50" font-size="10" text-anchor="middle" fill="rgba(255,255,255,0.1)">Кринж</text></svg>');
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
             background-color: rgba(255, 255, 0, 0.3);
             padding: 20px;
@@ -29,46 +33,105 @@
             50% { opacity: 0.5; }
             100% { opacity: 1; }
         }
-        .banner {
-            text-align: center;
+        nav {
+            background: #0000ff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #ffff00;
+            margin: 5px;
+            padding: 8px 15px;
+            text-decoration: none;
+            border: 2px solid #ffff00;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover {
+            background: #ff00ff;
+            transform: scale(1.1);
+        }
+        .section {
+            display: none;
+            padding: 20px;
+            border: 3px dotted #00ffff;
             margin: 20px 0;
         }
-        img {
-            max-width: 100%;
-            height: auto;
+        .active {
+            display: block;
         }
-        .content {
-            text-align: justify;
-            line-height: 1.6;
+        .button {
+            background: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-family: Comic Sans MS;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: rotate(5deg);
         }
         .counter {
             text-align: right;
             font-weight: bold;
             color: #ffff00;
+            margin: 20px 0;
+        }
+        .image-gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin: 5px;
+            border: 3px solid #00ff00;
+            border-radius: 50%;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background: #800080;
+            color: #ffff00;
         }
     </style>
 </head>
 <body>
-    <!-- Фоновая музыка (автовоспроизведение) -->
-    <audio autoplay loop>
+    <!-- Фоновая музыка -->
+    <audio id="bgMusic" autoplay loop>
         <source src="https://example.com/annoying-tune.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Бегущая строка -->
-    <marquee behavior="scroll" direction="left" style="background: #0000ff; color: #ffff00; padding: 10px;">
-        ⚡ ВНИМАНИЕ! ТОЛЬКО СЕГОДНЯ: СКИДКА 99% НА ВСЕ КРИНЖ-ТОВАРЫ! ⚡
+    <marquee behavior="scroll" direction="left" style="background: #0000ff; color: #ffff00; padding: 10px; font-size: 18px;">
+        ⚡ ВНИМАНИЕ! ТОЛЬКО СЕГОДНЯ: СКИДКА 99% НА ВСЕ КРИНЖ-ТОВАРЫ! ⚡ БЕСПЛАТНАЯ ДОСТАВКА В ПАРАЛЛЕЛЬНУЮ ВСЕЛЕННУЮ! ⚡
     </marquee>
 
     <div class="container">
         <h1>🤡 КРИНЖОПОЛИС 🤡</h1>
-        <p style="text-align: center; font-size: 24px;">Столица кринжа во Вселенной!</p>
+        <p style="text-align: center; font-size: 24px; margin-bottom: 20px;">Столица кринжа во Вселенной!</p>
 
-        <!-- Мигающий баннер -->
-        <div class="banner">
-            <img src="https://i.imgur.com/4MSdT9l.gif" alt="Мигающий баннер">
-        </div>
+        <!-- Навигация -->
+        <nav>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('home')">🏠 Главная</a>
+                <a href="#" onclick="showSection('about')">🦸‍♂️ О нас</a>
+                <a href="#" onclick="showSection('gallery')">📸 Галерея кринжа</a>
+                <a href="#" onclick="showSection('jokes')">😂 Шутки</a>
+                <a href="#" onclick="showSection('advice')">💡 Советы</a>
+                <a href="#" onclick="showSection('games')">🎮 Игры</a>
+                <a href="#" onclick="showSection('contacts')">📬 Контакты</a>
+            </div>
+        </nav>
 
-        <div class="content">
+        <!-- Главная секция -->
+        <section id="home" class="section active">
             <h2>Добро пожаловать на самый кринжовый сайт Рунета!</h2>
             <p>Здесь вы найдёте:</p>
             <ul>
@@ -76,25 +139,338 @@
                 <li>Абсурдные советы на каждый день</li>
                 <li>Тайны мироздания (не гарантировано)</li>
                 <li>Секретный рецепт печенья из носков</li>
+                <li>Интерактивные игры для всей семьи</li>
+                <li>Мигающие баннеры (много-много)</li>
             </ul>
+            <button class="button" onclick="alert('Вы нажали на кнопку! Поздравляем!')">Нажми меня!</button>
+            <button class="button" onclick="toggleMusic()">Вкл/Выкл музыку</button>
+        </section>
 
-            <h3>🦕 Сегодняшний факт дня:</h3>
-            <p>Учёные доказали, что если смотреть на динозавра 3 минуты подряд, он подмигнёт вам в ответ. Проверено на 10 000 добровольцах!</p>
+        <!-- О нас -->
+        <section id="about" class="section">
+            <h2>🦸‍♂️ О нашем кринже</h2>
+            <p>Мы — команда профессиональных кринжеделов с 20-летним стажем. Основаны в 1999 году, когда кринж ещё не был мейнстримом.</p>
+            <p>Наши достижения:</p>
+            <ul>
+                <li>Создали первый в мире мигающий баннер</li>
+                <li>Изобрели шрифт Comic Sans (шутка, но кто знает?)</li>
+                <li>Построили виртуальную пирамиду из GIF-анимаций</li>
+                <li>Научили кота программировать на HTML</li>
+            </ul>
+            <img src="https://i.imgur.com/4MSdT9l.gif" alt="Мигающий баннер" width="300">
+        </section>
 
-            <!-- Смешная картинка -->
-            <div style="text-align: center;">
-                <img src="https://i.imgur.com/5K9zQ7l.jpg" alt="Кот в солнечных очках" width="300">
-                <p><i>Этот кот знает все секреты кринжа</i></p>
+        <!-- Галерея -->
+        <section id="gallery" class="section">
+            <h2>📸 Галерея кринжа</h2>
+            <div class="image-gallery">
+                <img src="https://i.imgur.com/5K9zQ7l.jpg" alt="Кот в солнечных очках">
+                <img src="https://i.imgur.com/abc123.jpg" alt="Динозавр на роликах">
+                <img src="https://i.imgur.com/def456.jpg" alt="Программист с усами">
+                <img src="https://i.imgur.com/ghi789.jpg" alt="Тостер с лицом">
             </div>
+            <button class="button" onclick="addRandomImage()">Добавить случайное изображение</button>
+        </section>
 
-            <h3>💡 Полезный совет:</h3>
-            <p>Если ваш тостер начал говорить с вами, вежливо предложите ему чашку чая. Это поможет установить дипломатические отношения.</p>
-        </div>
+              <!-- Шутки -->
+        <section id="jokes" class="section">
+            <h2>😂 Шутки кринжового уровня</h2>
+            <div id="jokeDisplay" style="background: #ffff00; color: #ff0000; padding: 15px; margin: 15px 0; border: 3px double #ff00ff;">
+                Нажмите кнопку, чтобы получить шутку!
+            </div>
+            <button class="button" onclick="showRandomJoke()">Новая шутка!</button>
+            <p><i>Шутки настолько кринжовые, что могут вызвать улыбку даже у камня!</i></p>
+        </section>
+
+        <!-- Советы -->
+        <section id="advice" class="section">
+            <h2>💡 Абсурдные советы на каждый день</h2>
+            <div id="adviceDisplay" style="background: #00ffff; color: #8b008b; padding: 15px; margin: 15px 0; border: 3px dotted #ff0000;">
+                Здесь появится ваш персональный абсурдный совет!
+            </div>
+            <button class="button" onclick="showRandomAdvice()">Получить совет</button>
+            <ul>
+                <li>Если не можете уснуть — посчитайте пиксели на экране</li>
+                <li>Для счастья нужно всего лишь 10 000 GIF-анимаций</li>
+                <li>Никогда не спорьте с тостером — он всё равно победит</li>
+            </ul>
+        </section>
+
+        <!-- Игры -->
+        <section id="games" class="section">
+            <h2>🎮 Кринж-игры</h2>
+            <p>Выберите игру:</p>
+            <button class="button" onclick="startGame('click')">Кликер кринжа</button>
+            <button class="button" onclick="startGame('guess')">Угадай GIF</button>
+            <button class="button" onclick="startGame('memory')">Память кринжа</button>
+
+            <div id="gameArea" style="margin-top: 20px; padding: 15px; background: rgba(255, 0, 255, 0.2);">
+                <!-- Сюда будет загружаться игра -->
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="section">
+            <h2>📬 Контакты кринж-корпорации</h2>
+            <p>Мы всегда на связи (почти всегда, иногда мы спим или считаем пиксели):</p>
+            <ul>
+                <li>Email: <a href="mailto:krinj@krinjopolis.ru" style="color: #00ff00;">krinj@krinjopolis.ru</a></li>
+                <li>Телефон: <a href="tel:+79991234567" style="color: #00ff00;">+7 (999) 123‑45‑67</a></li>
+                <li>Адрес: Галактика Кринжополис, улица Абсурда, дом 666</li>
+            </ul>
+            <form id="contactForm">
+                <label>Ваше имя:</label><br>
+                <input type="text" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+                <label>Сообщение:</label><br>
+                <textarea style="width: 100%; height: 100px; padding: 8px; margin-bottom: 10px;"></textarea><br>
+                <button type="button" class="button" onclick="submitForm()">Отправить кринж-сообщение</button>
+            </form>
+            <p id="formResponse"></p>
+        </section>
 
         <!-- Счётчик посещений -->
         <div class="counter">
             👁️ Вас посетило: <span id="visits">42 666</span> кринж‑энтузиастов!
+            <button class="button" style="font-size: 12px; padding: 5px 10px;" onclick="incrementCounter()">+1 к счётчику!</button>
         </div>
     </div>
+
+    <footer>
+        <p>© 1999–2024 Кринжополис. Все права смещены. Все левые права тоже смещены.</p>
+        <p>Сайт работает на чистой энергии кринжа и мигающих GIF-анимациях.</p>
+    </footer>
+
+    <script>
+        // Массивы для шуток и советов
+        const jokes = [
+            "Почему программисты не ходят в лес? Боятся встретить баги!",
+            "Что сказал HTML CSS? «Ты выглядишь потрясающе сегодня!»",
+            "Как зовут кота, который знает все секреты интернета? Мур-Мур-Мурррр!",
+            "Почему динозавры не пользуются интернетом? Боятся поймать вирус мелового периода!",
+            "Что общего у тостера и программиста? Оба любят горячие баги!"
+        ];
+
+        const advices = [
+            "Если вы видите мигающий баннер — подмигните ему в ответ!",
+            "Для счастья достаточно 100500 GIF-анимаций в день!",
+            "Никогда не спорьте с котом — он всё равно сделает по-своему!",
+            "Чтобы поймать удачу, нужно поставить ловушку рядом с тостером!",
+            "Лучший способ расслабиться — посчитать пиксели на экране!"
+        ];
+
+        // Функция показа раздела
+        function showSection(sectionId) {
+            // Скрываем все разделы
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Показываем нужный раздел
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Функция переключения музыки
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            if (music.paused) {
+                music.play();
+                alert('Музыка кринжа включена! 🎶');
+            } else {
+                music.pause();
+                alert('Музыка кринжа выключена... Как скучно... 😞');
+            }
+        }
+
+        // Функция случайной шутки
+        function showRandomJoke() {
+            const randomIndex = Math.floor(Math.random() * jokes.length);
+            document.getElementById('jokeDisplay').textContent = jokes[randomIndex];
+        }
+
+        // Функция случайного совета
+        function showRandomAdvice() {
+            const randomIndex = Math.floor(Math.random() * advices.length);
+            document.getElementById('adviceDisplay').textContent = advices[randomIndex];
+        }
+
+        // Функция добавления случайного изображения в галерею
+        function addRandomImage() {
+            const gallery = document.querySelector('.image-gallery');
+            const newImg = document.createElement('img');
+            newImg.src = 'https://i.imgur.com/' + Math.random().toString(36).substring(2, 8) + '.jpg';
+            newImg.alt = 'Случайное кринж-изображение';
+            newImg.style.width = '200px';
+            newImg.style.height = '150px';
+            newImg.style.margin = '5px';
+            newImg.style.border = '3px solid #00ff00';
+            newImg.style.borderRadius = '50%';
+            gallery.appendChild(newImg);
+        }
+
+        // Функция старта игры
+        function startGame(gameType) {
+            const gameArea = document.getElementById('gameArea');
+            switch(gameType) {
+                case 'click':
+                    gameArea.innerHTML = `
+                        <h3>🖱️ Кликер кринжа</h3>
+                        <p>Кликайте как можно быстрее!</p>
+                        <button class="button" onclick="incrementClicks()">Клик!</button>
+                        <p>Всего кликов: <span id="clickCount">0</span></p>
+                    `;
+                    break;
+                case 'guess':
+                    gameArea.innerHTML = `
+                        <h3>🤔 Угадай GIF</h3>
+                        <p>Что изображено на этой анимации?</p>
+                        <img src="https://i.imgur.com/4MSdT9l.gif" alt="Угадай что" width="200">
+                        <input type="text" placeholder="Ваш ответ" style="margin: 10px; padding: 5px;">
+                        <button class="button" onclick="checkGuess()">Проверить</button>
+                    `;
+                    break;
+                                    case 'memory':
+                    gameArea.innerHTML = `
+                        <h3>🧠 Память кринжа</h3>
+                        <p>Найдите пары одинаковых кринж‑картинок!</p>
+                        <div id="memoryGrid" style="display: grid; grid-template-columns: repeat(4, 80px); gap: 10px; margin: 15px 0;">
+                            <!-- Карточки будут сгенерированы скриптом -->
+                </div>
+            `;
+            initMemoryGame();
+            break;
+        }
+    }
+
+    // Функция увеличения количества кликов в кликер‑игре
+    let clickCount = 0;
+    function incrementClicks() {
+        clickCount++;
+        document.getElementById('clickCount').textContent = clickCount;
+
+        // Добавляем визуальный эффект при клике
+        const button = event.target;
+        button.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+        }, 100);
+
+        if (clickCount % 10 === 0) {
+            alert(`Поздравляем! Вы достигли ${clickCount} кликов! 🎉`);
+        }
+    }
+
+    // Функция проверки ответа в игре «Угадай GIF»
+    function checkGuess() {
+        const input = document.querySelector('#gameArea input');
+        const answer = input.value.toLowerCase();
+
+        if (answer.includes('баннер') || answer.includes('мига')) {
+            alert('Правильно! Это действительно мигающий баннер! 🤡');
+        } else {
+            alert('Не угадали! Попробуйте ещё раз! 🤔');
+        }
+    }
+
+    // Инициализация игры «Память кринжа»
+    function initMemoryGame() {
+        const grid = document.getElementById('memoryGrid');
+        grid.innerHTML = '';
+
+        // Массив картинок (повторяющиеся пары)
+        const images = [
+            'https://i.imgur.com/5K9zQ7l.jpg',
+            'https://i.imgur.com/abc123.jpg',
+            'https://i.imgur.com/def456.jpg',
+            'https://i.imgur.com/ghi789.jpg'
+        ];
+
+        let cards = [];
+        images.forEach(img => {
+            cards.push(img, img); // Добавляем каждую картинку дважды
+        });
+
+        // Перемешиваем карточки
+        cards.sort(() => Math.random() - 0.5);
+
+        // Создаём карточки
+        cards.forEach((img, index) => {
+            const card = document.createElement('div');
+            card.style.width = '80px';
+            card.style.height = '80px';
+            card.style.background = '#ff00ff';
+            card.style.border = '2px solid #ffff00';
+            card.style.cursor = 'pointer';
+            card.dataset.image = img;
+            card.innerHTML = '<img src="https://via.placeholder.com/80" alt="Кринж-карточка" style="width:100%;height:100%;">';
+
+            card.addEventListener('click', function() {
+                flipCard(this);
+            });
+
+            grid.appendChild(card);
+        });
+    }
+
+    // Функция переворачивания карточки
+    let flippedCards = [];
+    function flipCard(card) {
+        if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+            // Показываем изображение
+            const imgUrl = card.dataset.image;
+            card.innerHTML = `<img src="${imgUrl}" alt="Кринж" style="width:100%;height:100%;">`;
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            // Проверяем совпадение после двух кликов
+            if (flippedCards.length === 2) {
+                setTimeout(checkMatch, 1000);
+            }
+        }
+    }
+
+    // Проверка совпадения карточек
+    function checkMatch() {
+        const [card1, card2] = flippedCards;
+        const img1 = card1.dataset.image;
+        const img2 = card2.dataset.image;
+
+        if (img1 === img2) {
+            // Карточки совпали — оставляем их открытыми
+            card1.style.opacity = '0.7';
+            card2.style.opacity = '0.7';
+            alert('Совпадение! Вы нашли пару кринж-картинок! 🎉');
+        } else {
+            // Не совпали — переворачиваем обратно
+            card1.innerHTML = '<img src="https://via.placeholder.com/80" alt="Кринж-карточка" style="width:100%;height:100%;">';
+            card2.innerHTML = '<img src="https://via.placeholder.com/80" alt="Кринж-карточка" style="width:100%;height:100%;">';
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+        }
+
+        flippedCards = []; // Очищаем массив для следующего хода
+    }
+
+    // Функция отправки формы
+    function submitForm() {
+        const response = document.getElementById('formResponse');
+        response.textContent = 'Ваше кринж-сообщение отправлено! Мы ответим в течение 10 000 лет! 🤡';
+        response.style.color = '#ffff00';
+        setTimeout(() => {
+            response.textContent = '';
+        }, 5000);
+    }
+
+    // Функция увеличения счётчика посещений
+    function incrementCounter() {
+        const counter = document.getElementById('visits');
+        let currentValue = parseInt(counter.textContent.replace(/\s/g, ''));
+        currentValue++;
+        counter.textContent = currentValue.toLocaleString('ru-RU');
+    }
+
+    // Инициализация счётчика при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        incrementCounter(); // Добавляем первого посетителя
+    });
+</script>
 </body>
 </html>
